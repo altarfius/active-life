@@ -61,7 +61,27 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $map = new \mirocow\yandexmaps\Map('yandex_map', [
+            'center' => [55.7372, 37.6066],
+            'zoom' => 10,
+            // Enable zoom with mouse scroll
+            'behaviors' => array('default', 'scrollZoom'),
+            'type' => "yandex#map",
+        ],
+            [
+                // Permit zoom only fro 9 to 11
+                'minZoom' => 9,
+                'maxZoom' => 11,
+                'controls' => [
+                    "new ymaps.control.SmallZoomControl()",
+                    "new ymaps.control.TypeSelector(['yandex#map', 'yandex#satellite'])",
+                ],
+            ]
+        );
+
+        return $this->render('index', [
+            'map' => $map,
+        ]);
     }
 
     /**

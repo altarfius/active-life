@@ -43,6 +43,9 @@ $config = [
             ],
         ],
         'db' => $db,
+        'yandexMapsApi' => [
+            'class' => 'mirocow\yandexmaps\Api',
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
